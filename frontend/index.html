@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CALUSE - IT 技术论坛">
+  <title>CALUSE · IT 技术论坛</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2322d3ee'/%3E%3Cstop offset='1' stop-color='%230b7d99'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='2' y='2' width='60' height='60' rx='17' fill='url(%23g)'/%3E%3Cpath d='M42 17 A15 15 0 1 0 42 47' stroke='white' stroke-width='7' stroke-linecap='round' fill='none'/%3E%3Crect x='46' y='35' width='9' height='12' rx='2.5' fill='white'/%3E%3C/svg%3E">
+</head>
+<body>
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+
+  <header class="topbar glass" id="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#/" data-nav>
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <defs><linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#0b7d99"/>
+          </linearGradient></defs>
+          <rect x="2" y="2" width="60" height="60" rx="17" fill="url(#brandGrad)"/>
+          <path d="M42 17 A15 15 0 1 0 42 47" stroke="#fff" stroke-width="7" stroke-linecap="round" fill="none"/>
+          <rect x="46" y="35" width="9" height="12" rx="2.5" fill="#fff"/>
+        </svg>
+        <span class="brand-name">CALUSE</span>
+        <span class="brand-sub">IT FORUM</span>
+      </a>
+      <nav class="cats" id="catNav"></nav>
+      <div class="topbar-right">
+        <button class="icon-btn" id="searchToggle" data-i18n-title="search" title="搜索">
+          <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <button class="icon-btn" id="themeToggle" data-i18n-title="theme" title="主题">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" style="display:none"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <select class="lang-select glass" id="langSelect" title="Language"></select>
+        <div id="authArea"></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="search-pop glass" id="searchPop" hidden>
+    <input type="text" id="searchInput" data-i18n-placeholder="search_ph" placeholder="搜索帖子…" autocomplete="off">
+    <button class="btn btn-primary" id="searchGo" data-i18n="search">搜索</button>
+  </div>
+
+  <main id="app" class="container"></main>
+
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col footer-brand-col">
+        <div class="flex" style="gap:10px">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" style="width:34px;height:34px">
+            <defs><linearGradient id="footerGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#0b7d99"/>
+            </linearGradient></defs>
+            <rect x="2" y="2" width="60" height="60" rx="17" fill="url(#footerGrad)"/>
+            <path d="M42 17 A15 15 0 1 0 42 47" stroke="#fff" stroke-width="7" stroke-linecap="round" fill="none"/>
+            <rect x="46" y="35" width="9" height="12" rx="2.5" fill="#fff"/>
+          </svg>
+          <div>
+            <div class="brand-name" style="font-size:16px">CALUSE</div>
+            <div class="footer-desc" data-i18n="about_text">IT技术论坛</div>
+          </div>
+        </div>
+        <p class="footer-tagline" data-i18n="footer_secure">多层安全防护 · 每周自动数据报告</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_product">产品</h4>
+        <a href="#/page/about" data-i18n="footer_about">关于我们</a>
+        <a href="#/sort/hot" data-i18n="hot_posts">热门帖子</a>
+        <a href="#/page/announce" data-i18n="footer_announce">站务公告</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_support">支持</h4>
+        <a href="#/page/help" data-i18n="footer_help">帮助中心</a>
+        <a href="#/page/contact" data-i18n="footer_contact">联系管理员</a>
+        <a href="#/page/contact" data-i18n="footer_report_link">举报违规内容</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_legal">法律条款</h4>
+        <a href="#/page/terms" data-i18n="footer_terms">用户协议</a>
+        <a href="#/page/privacy" data-i18n="footer_privacy">隐私政策</a>
+        <a href="#/page/rules" data-i18n="footer_rules">社区准则</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_oss">开源社区</h4>
+        <a href="https://github.com/Garl404/IT_Forum" target="_blank" rel="noopener noreferrer" data-i18n="footer_repo">GitHub 仓库</a>
+        <a href="https://github.com/Garl404/IT_Forum/issues/new" target="_blank" rel="noopener noreferrer" data-i18n="footer_bug">提交 Bug</a>
+        <a href="https://github.com/Garl404/IT_Forum/pulls" target="_blank" rel="noopener noreferrer" data-i18n="footer_patch">提交补丁</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 CALUSE</span>
+      <span data-i18n="about_text">IT技术论坛</span>
+      <span class="footer-grow"></span>
+      <a href="https://github.com/Garl404/IT_Forum" target="_blank" rel="noopener noreferrer" class="footer-bottom-link" data-i18n="footer_license">MIT 开源协议</a>
+      <span data-i18n="footer_rights">保留所有权利</span>
+    </div>
+  </footer>
+
+  <div class="modal-mask" id="modalMask" hidden>
+    <div class="modal glass" id="modalBox"></div>
+  </div>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/pages.js"></script>
+  <script src="/js/markdown.js"></script>
+  <script src="/js/charts.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/admin.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

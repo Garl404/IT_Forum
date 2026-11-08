@@ -1,0 +1,72 @@
+server:
+  host: 0.0.0.0
+  port: 8080
+  read_timeout_sec: 15
+  write_timeout_sec: 120
+  idle_timeout_sec: 120
+  # 仅当部署在反向代理（Nginx 等）之后且代理会覆盖 X-Forwarded-For 时设为 true，
+  # 否则客户端可伪造该头绕过 DDoS 防护
+  trust_proxy: false
+
+database:
+  path: data/caluse.db
+
+security:
+  # 生产环境务必修改此密钥
+  jwt_secret: "caluse-jwt-secret-change-me-in-production-9f8a7b6c"
+  jwt_expire_hours: 24
+  argon2_memory_kb: 65536
+  argon2_iterations: 3
+  argon2_parallelism: 2
+  # 管理员严格登录：新设备（IP/指纹未登记）需邮箱验证码
+  admin_require_otp_new_device: true
+  rate_limit:
+    general_per_min: 180      # 每 IP 每分钟
+    login_per_min: 5          # 登录接口每 IP
+    register_per_hour: 5      # 注册接口每 IP
+    post_per_min: 6           # 发帖每用户
+    comment_per_min: 12       # 评论每用户
+    upload_per_min: 8         # 上传每用户
+
+ddos:
+  enabled: true
+  trigger_rps: 1500           # 持续全局 RPS 阈值
+  spike_factor: 4.0           # 相对 10 分钟基线的突增倍数
+  check_interval_sec: 5
+  auto_recover_min: 10        # 低于阈值持续 N 分钟自动恢复
+  recover_threshold_rps: 300
+  per_ip_threshold_per_min: 600   # 单 IP 每分钟请求上限
+  ip_block_minutes: 30
+  whitelist_ips:
+    - "127.0.0.1"
+    - "::1"
+
+content:
+  post_max_chars: 65536
+  comment_max_chars: 10000
+  title_max_chars: 200
+  upload:
+    base_quota_bytes: 5368709120      # 5 GB
+    level10_quota_bytes: 16106127360  # 15 GB
+    max_file_bytes: 2147483648        # 单文件 2 GB
+    dir: uploads
+  banned_words_file: data/banned_words.json
+  compensation:
+    quota_bonus_bytes: 2147483648     # 误判补偿：+2 GB 上传额度
+    max_bonuses: 3
+
+email:
+  enabled: false
+  smtp_host: ""
+  smtp_port: 465
+  username: ""
+  password: ""
+  from: ""
+  use_tls: true
+
+report:
+  weekly_iso_day: 1     # ISO 周一
+  dir: data/reports
+
+frontend:
+  dir: ../frontend
